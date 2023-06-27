@@ -77,7 +77,7 @@ def operate(df):
             if not quantity:
                 print('No Quantity available \n')
             elif balance <= amount:
-                print('No {} to buy {}'.format(ref, crypto))
+                print(f'No {ref} to buy {crypto}')
             else:
                 order = client.order_limit_buy(
                     symbol=symbol,
@@ -114,7 +114,7 @@ def operate(df):
             if not quantity:
                 print('No Quantity available \n')
             elif balance < quantity:
-                print('No {} to sell for {}'.format(crypto, ref))
+                print(f'No {crypto} to sell for {ref}')
             else:
                 order = client.order_limit_sell(
                     symbol=symbol,
