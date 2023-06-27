@@ -21,7 +21,7 @@ ema_f = 15
 ema_s = 50
 sma = 200
 
-# Funciones
+# Functions
 def synchronize():
     candles = client.get_klines(symbol=symbol,interval=period,limit=1)
     timer = pd.to_datetime(float(candles[0][0]) * 1000000)
