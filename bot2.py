@@ -93,9 +93,9 @@ def operate(df):
                         orderId= order_id)
                     status=order.get('status')
 
-                sell_price = np.round(price*1.02, max_float_qty)
-                stop_price = np.round(price*0.991, max_float_qty)
-                stop_limit_price = np.round(price*0.99, max_float_qty)
+                sell_price = ((price * 1.02) // tick_size) * tick_size
+                stop_price = ((price*0.991) // tick_size) * tick_size
+                stop_limit_price = ((price*0.99) // tick_size) * tick_size
 
                 order = client.order_oco_sell(
                     symbol=symbol,
@@ -130,9 +130,9 @@ def operate(df):
                         orderId= order_id)
                     status=order.get('status')
 
-                buy_price = np.round(price*0.98, max_float_qty)
-                stop_price = np.round(price*1.009, max_float_qty)
-                stop_limit_price = np.round(price*1.01, max_float_qty)
+                buy_price = ((price*0.98) // tick_size) * tick_size
+                stop_price = ((price*1.009) // tick_size) * tick_size
+                stop_limit_price = ((price*1.01) // tick_size) * tick_size
 
                 order = client.order_oco_buy(
                     symbol=symbol,
@@ -153,6 +153,7 @@ if __name__ == "__main__":
     step_size = float(info['filters'][1].get('stepSize'))
     max_qty = float(info['filters'][1].get('maxQty'))
     max_float_qty = ut.get_max_float_qty(step_size)
+    tick_size = float(info['filters'][0].get('tickSize'))
 
     df = initialize_dataframe(1)
 
