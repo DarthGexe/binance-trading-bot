@@ -133,6 +133,7 @@ def operate(df):
                 buy_price = ((price*0.98) // tick_size) * tick_size
                 stop_price = ((price*1.009) // tick_size) * tick_size
                 stop_limit_price = ((price*1.01) // tick_size) * tick_size
+                quantity = ut.get_quantity(buy_price, amount, min_qty, max_qty, max_float_qty)
 
                 order = client.order_oco_buy(
                     symbol=symbol,
